@@ -1,0 +1,31 @@
+1/30 = .0333
+1/24 = .0416
+
+A frame should be displayed for .0333 seconds.
+
+
+1/1 = 1
+A frame should be displayed for 1 seconds. This is 1000 ms.
+1/2 = .5
+A frame should be displayed for .5 seconds. This is 500 ms.
+
+HOW TO DO OVERFLOW
+Consider a canvas that is 100,100. The cursor is at (x1, y1) = 50, 95, and the next point is supposed to be drawn at (x2, y2) = 50, 105.
+
+    1. Draw a line from 50, 95 to 50, 105 to get the first portion of the line.
+    2. For components greater than CANVAS_WIDTH or CANVAS_HEIGHT, subtract CANVAS_WIDTH from x2, CANVAS_HEIGHT from y2. Store in x4, y4
+        This yields x4 = 50 (because x2 is not greater than CANVAS_WIDTH)
+        and y4 = 5 (because y2 greater than CANVAS_HEIGHT)
+    3. Take the difference between x1,x2 and y1,y2 and add it to x4,y4 to make x3,y3
+    4. Draw a second line from x3,y3 to x4,y4 for the second portion of the line.
+    5. Set x and y to x4,y4
+
+CREATING LAYERS USING TWO IMAGE BUFFERS
+    Use PGraphics class with createGraphics() method
+		- New PGraphics object for offscreen rendering
+		http://processing.org/discourse/yabb2/YaBB.pl?num=1185207551
+    	- This leads to much slower rendering
+    Using OpenGL offscreen buffer may help
+	
+
+HOW TO RECORD FOR PLAYBACK
